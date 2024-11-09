@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class SignupPage extends StatelessWidget {
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +22,15 @@ class SignupPage extends StatelessWidget {
               ),
               SizedBox(height: 40),
               TextField(
+                controller: fullNameController,
+                decoration: InputDecoration(
+                  labelText: 'Full Name',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
@@ -23,6 +38,7 @@ class SignupPage extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: passwordController,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(),
@@ -30,9 +46,29 @@ class SignupPage extends StatelessWidget {
                 obscureText: true,
               ),
               SizedBox(height: 20),
+              TextField(
+                controller: confirmPasswordController,
+                decoration: InputDecoration(
+                  labelText: 'Confirm Password',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+              ),
+              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context); // Go back to Login Page
+                  if (passwordController.text ==
+                      confirmPasswordController.text) {
+                    Navigator.pop(context);
+                  } else {
+                    // Show error message if passwords do not match
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Passwords do not match.'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
                 },
                 child: Text('Sign Up'),
               ),
@@ -43,4 +79,3 @@ class SignupPage extends StatelessWidget {
     );
   }
 }
-

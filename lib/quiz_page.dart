@@ -146,9 +146,9 @@ class _QuizPageState extends State<QuizPage> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // Close the dialog
+                Navigator.pop(context);
                 setState(() {
-                  selectedAnswers = List<String?>.filled(10, null); // Reset answers
+                  selectedAnswers = List<String?>.filled(10, null); 
                 });
               },
               child: Text('OK'),

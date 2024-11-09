@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quiz_page.dart'; 
+import 'signup_page.dart';  
 
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -61,7 +62,6 @@ class LoginPage extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => QuizPage()),
                         );
                       } else {
-                        // Show error message if fields are empty
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Please enter your email and password.'),
@@ -77,6 +77,16 @@ class LoginPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                  ),
+                  SizedBox(height: 10),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignupPage()),
+                      );
+                    },
+                    child: Text('Don\'t have an account? Sign up'),
                   ),
                 ],
               ),
